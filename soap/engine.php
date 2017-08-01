@@ -24,7 +24,7 @@
  */
 
 
-require_once($CFG->dirroot . '/local/testopaqueqe/classes.php');
+require_once('./classes.php');
 
 
 /**
@@ -139,7 +139,6 @@ class local_testopaqueqe_engine {
      * @return local_testopaqueqe_start_return see class documentation.
      */
     function start($questionid, $questionversion, $url, $paramNames, $paramValues, $cachedResources) {
-        global $CFG;
 
         $this->handle_special_from_questionid($questionid, $questionversion, 'start');
 
@@ -152,7 +151,7 @@ class local_testopaqueqe_engine {
         $return->CSS = $this->get_css();
         $return->progressInfo = "Try 1";
         $return->addResource(local_testopaqueqe_resource::make_from_file(
-                $CFG->dirroot . '/local/testopaqueqe/pix/world.gif', 'world.gif', 'image/gif'));
+                './pix/world.gif', 'world.gif', 'image/gif'));
 
         return $return;
     }
@@ -166,7 +165,6 @@ class local_testopaqueqe_engine {
      * @return object
      */
     function process($questionSession, $names, $values) {
-        global $CFG;
 
         $params = array_combine($names, $values);
 
@@ -187,7 +185,7 @@ class local_testopaqueqe_engine {
         // $return->CSS = $this->get_css(); Note that the opaque behaviour can't cope with this.
         $return->progressInfo = 'Try ' . $try;
         $return->addResource(local_testopaqueqe_resource::make_from_file(
-                $CFG->dirroot . '/local/testopaqueqe/pix/world.gif', 'world.gif', 'image/gif'));
+                './pix/world.gif', 'world.gif', 'image/gif'));
 
         if (isset($params['finish'])) {
             $return->questionEnd = true;
@@ -271,9 +269,8 @@ class local_testopaqueqe_engine {
      * @return string HTML code.
      */
     protected function get_html($sessionid, $try, $submitteddata) {
-        global $CFG;
-
-        $disabled = '';
+        
+	$disabled = '';
         if (substr($sessionid, 0, 3) === 'ro-') {
             $disabled = 'disabled="disabled" ';
         }
@@ -285,8 +282,7 @@ class local_testopaqueqe_engine {
         $output = '
 <div class="local_testopaqueqe">
 <h2><span>Hello <img src="%%RESOURCES%%/world.gif" alt="world" />!</span></h2>
-<p>This is the test Opaque engine at ' . $CFG->wwwroot .
-    '/local/testopaqueqe/service.php processing question ' .
+<p>This is the test Opaque engine at ' . 'https://dev.abaganon.com/soap/service.php processing question ' .
     $sessionid . ' on try ' . $try . '</p>';
 
         foreach ($hiddendata as $name => $value) {

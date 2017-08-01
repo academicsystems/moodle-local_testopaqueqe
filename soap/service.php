@@ -25,11 +25,12 @@
 
 
 define('ABORT_AFTER_CONFIG', true);
-require_once('../../config.php');
-require_once($CFG->dirroot . '/local/testopaqueqe/engine.php');
+require_once('./engine.php');
+
+file_put_contents('request.log',file_get_contents('php://input') . "\n",FILE_APPEND);
 
 $server = new SoapServer(dirname(__FILE__) . '/opaque.wsdl', array(
-    'actor'        => $CFG->wwwroot . '/local/testopaqueqe/service.php',
+    'actor'        => 'http://dev.abaganon.com/soap/service.php',
     'soap_version' => SOAP_1_1,
     'cache_wsdl'   => WSDL_CACHE_NONE,
     'classmap'     => array(

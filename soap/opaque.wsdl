@@ -254,7 +254,7 @@
 
    <wsdl:service name="OmServiceService">
       <wsdl:port binding="impl:OmSoapBinding" name="Om">
-         <wsdlsoap:address location="http://tjh238.vledev2.open.ac.uk/vle/local/testopaqueqe/service.php"/>
+         <wsdlsoap:address location="https://dev.abaganon.com/soap/service.php"/>
       </wsdl:port>
    </wsdl:service>
 

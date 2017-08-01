@@ -22,18 +22,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-defined('MOODLE_INTERNAL') || die();
-
-global $CFG;
-require_once($CFG->dirroot . '/local/testopaqueqe/engine.php');
-
+require_once('../engine.php');
 
 class test_local_testopaqueqe_resource extends basic_testcase {
     public function test_make_from_file() {
-        global $CFG;
         $resource = local_testopaqueqe_resource::make_from_file(
-                $CFG->dirroot . '/local/testopaqueqe/pix/world.gif', 'world.gif', 'image/gif');
+                '../pix/world.gif', 'world.gif', 'image/gif');
         $this->assertEquals('world.gif', $resource->filename);
         $this->assertEquals('image/gif', $resource->mimeType);
     }

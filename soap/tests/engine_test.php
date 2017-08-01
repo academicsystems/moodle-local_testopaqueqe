@@ -23,10 +23,7 @@
  */
 
 
-defined('MOODLE_INTERNAL') || die();
-
-global $CFG;
-require_once($CFG->dirroot . '/local/testopaqueqe/engine.php');
+require_once('../engine.php');
 
 
 /**
